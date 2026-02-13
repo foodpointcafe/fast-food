@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.app {
+  min-height: 100vh;
+  background: #000;
+}
+
+/* Header Styles */
+.header-stripe {
+  background: linear-gradient(90deg, #FF0000 0%, #CC0000 100%);
+  padding: 12px 0;
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: 400;
+}
+
+.top-bar {
+  background: #000;
+  padding: 30px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid #FF0000;
+  position: relative;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.halal-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  text-align: center;
+  line-height: 1;
+}
+
+.arabic {
+  font-size: 60px;
+  color: #FFD700;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+.halal-text {
+  font-size: 36px;
+  color: #FFD700;
+  letter-spacing: 5px;
+  margin-top: -5px;
+}
+
+.phone-vertical {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 90px;
+  color: #FF0000;
+  letter-spacing: -2px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  line-height: 0.8;
+  font-weight: 400;
+}
+
+.slogan {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 100px;
+  color: #fff;
+  letter-spacing: -5px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  line-height: 0.9;
+  font-weight: 400;
+}
+
+.contact-info {
+  text-align: right;
+}
+
+.phone {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  color: #FF0000;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.address {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.hours {
+  font-size: 18px;
+  color: #ccc;
+  font-weight: 400;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  background: #000;
+  flex-wrap: wrap;
+}
+
+.nav button {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  padding: 15px 40px;
+  background: transparent;
+  color: #fff;
+  border: 3px solid #FF0000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 2px;
+  transform: skewX(-5deg);
+}
+
+.nav button:hover {
+  background: #FF0000;
+  transform: skewX(-5deg) scale(1.05);
+}
+
+.nav button.active {
+  background: #FF0000;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+}
+
+/* Menu Grid */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  padding: 40px 60px;
+  background: #0a0a0a;
+}
+
+.menu-item {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+  border: 2px solid #FF0000;
+  padding: 25px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.menu-item:hover::before {
+  left: 100%;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+  border-color: #FFD700;
+}
+
+.menu-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+.menu-item-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: #FFD700;
+  letter-spacing: 2px;
+  transform: skewX(-3deg);
+  line-height: 1.2;
+  flex: 1;
+}
+
+.price-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  color: #fff;
+  background: #FF0000;
+  padding: 8px 20px;
+  border-radius: 5px;
+  transform: skewX(-5deg);
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.menu-item-description {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Footer */
+.footer {
+  background: #000;
+  padding: 60px 40px 40px;
+  border-top: 4px solid #FF0000;
+}
+
+.delivery-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.delivery-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.delivery-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 80px;
+  color: #FF0000;
+  letter-spacing: 3px;
+  line-height: 0.9;
+  font-weight: 400;
+  transform: skewX(-5deg);
+}
+
+.delivery-subtitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+.delivery-minimum {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-top: 5px;
+}
+
+.bull-logo {
+  position: relative;
+}
+
+.bull-circle {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(255, 0, 0, 0.5);
+}
+
+.bull-silhouette {
+  font-size: 100px;
+  filter: brightness(0) invert(1);
+}
+
+.food-point-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 60px;
+  color: #fff;
+  letter-spacing: 3px;
+  text-align: right;
+  line-height: 1;
+}
+
+.red-ampersand {
+  color: #FF0000;
+  font-size: 70px;
+  margin: 0 5px;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 40px 0 20px;
+  font-size: 50px;
+  color: #FF0000;
+}
+
+.footer-slogan {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 3px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .top-bar {
+    padding: 30px 40px;
+  }
+
+  .phone-vertical {
+    font-size: 70px;
+  }
+
+  .slogan {
+    font-size: 80px;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    padding: 30px 40px;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .logo-section {
+    flex-direction: column;
+  }
+
+  .phone-vertical,
+  .slogan {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 40px;
+  }
+
+  .phone {
+    font-size: 32px;
+  }
+
+  .nav {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .nav button {
+    width: 100%;
+    font-size: 28px;
+    padding: 12px 30px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .delivery-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .delivery-title {
+    font-size: 60px;
+  }
+
+  .food-point-logo {
+    text-align: center;
+  }
+}
