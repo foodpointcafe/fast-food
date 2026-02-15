@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import logoImage from '../pints/foodpointLogo.jpg';
 
 // Данные меню из PDF
 const menuData = {
@@ -147,13 +148,7 @@ function App() {
       <header className="header">
         <div className="delivery-banner">
           <div className="bull-logo">
-            <div className="bull-circle">
-              <div className="bull-silhouette">🐂</div>
-            </div>
-          </div>
-
-          <div className="food-point-logo">
-            FOOD<span className="red-ampersand">&</span>POINT
+            <img src={logoImage} alt="Food Point Logo" className="logo-image" />
           </div>
 
           <div className="halal-logo">

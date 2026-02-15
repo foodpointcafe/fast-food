@@ -20,7 +20,7 @@ body {
 
 /* Header Styles */
 .header-stripe {
-  background: linear-gradient(90deg, #FF0000 0%, #CC0000 100%);
+  background: linear-gradient(90deg, #da3030 0%, #da3030 100%);
   padding: 12px 0;
   text-align: center;
   font-family: 'Bebas Neue', sans-serif;
@@ -35,7 +35,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 4px solid #FF0000;
+  border-bottom: 4px solid #da3030;
   position: relative;
 }
 
@@ -69,7 +69,7 @@ body {
 .phone-vertical {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 90px;
-  color: #FF0000;
+  color: #da3030;
   letter-spacing: -2px;
   writing-mode: vertical-rl;
   text-orientation: mixed;
@@ -81,7 +81,7 @@ body {
 .phone-horizontal {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 42px;
-  color: #FF0000;
+  color: #da3030;
   letter-spacing: 2px;
   font-weight: 400;
 }
@@ -113,7 +113,7 @@ body {
 .phone {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 42px;
-  color: #FF0000;
+  color: #da3030;
   letter-spacing: 2px;
   margin-bottom: 8px;
 }
@@ -147,7 +147,7 @@ body {
   padding: 15px 40px;
   background: transparent;
   color: #fff;
-  border: 3px solid #FF0000;
+  border: 3px solid #da3030;
   cursor: pointer;
   transition: all 0.3s ease;
   letter-spacing: 2px;
@@ -155,13 +155,13 @@ body {
 }
 
 .nav button:hover {
-  background: #FF0000;
+  background: #da3030;
   transform: skewX(-5deg) scale(1.05);
 }
 
 .nav button.active {
-  background: #FF0000;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+  background: #da3030;
+  box-shadow: 0 0 20px rgba(218, 48, 48, 0.6);
 }
 
 /* Menu Grid */
@@ -175,7 +175,7 @@ body {
 
 .menu-item {
   background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-  border: 2px solid #FF0000;
+  border: 2px solid #da3030;
   padding: 25px;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -226,11 +226,11 @@ body {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 40px;
   color: #fff;
-  background: #FF0000;
+  background: #da3030;
   padding: 8px 20px;
   border-radius: 5px;
   transform: skewX(-5deg);
-  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+  box-shadow: 0 4px 15px rgba(218, 48, 48, 0.5);
   white-space: nowrap;
 }
 
@@ -245,7 +245,7 @@ body {
 .footer {
   background: #000;
   padding: 60px 40px 40px;
-  border-top: 4px solid #FF0000;
+  border-top: 4px solid #da3030;
 }
 
 .delivery-banner {
@@ -269,7 +269,7 @@ body {
 .delivery-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 80px;
-  color: #FF0000;
+  color: #da3030;
   letter-spacing: 3px;
   line-height: 0.9;
   font-weight: 400;
@@ -296,16 +296,24 @@ body {
   position: relative;
 }
 
+.logo-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 10px 40px rgba(218, 48, 48, 0.5);
+}
+
 .bull-circle {
   width: 120px;
   height: 120px;
-  background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+  background: linear-gradient(135deg, #da3030 0%, #da3030 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow: 0 10px 40px rgba(255, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(218, 48, 48, 0.5);
 }
 
 .bull-silhouette {
@@ -324,7 +332,7 @@ body {
 }
 
 .red-ampersand {
-  color: #FF0000;
+  color: #da3030;
   font-size: 70px;
   margin: 0 5px;
 }
@@ -341,7 +349,7 @@ body {
   gap: 40px;
   margin: 10px 0;
   font-size: 50px;
-  color: #FF0000;
+  color: #da3030;
 }
 
 .footer-slogan {
