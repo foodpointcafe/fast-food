@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import logoMain from '../pints/logoMain.jpg';
+import logoMain from '../pints/logoMain.jpeg';
 import logoIndex from '../pints/logoIndex.jpg';
 
 // Данные меню из PDF
