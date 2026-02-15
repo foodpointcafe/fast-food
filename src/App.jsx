@@ -163,7 +163,7 @@ function App() {
 
           <div className="delivery-text">
             <div className="delivery-title">ЛУЧШИЙ ФАСТФУД</div>
-            <div className="delivery-subtitle">БЕСПЛАТНАЯ ПО АРХЫЗУ</div>
+            <div className="delivery-subtitle">БЕСПЛАТНАЯ ДОСТАВКА ПО АРХЫЗУ</div>
             <div className="delivery-minimum">ОТ 700₽</div>
           </div>
         </div>
