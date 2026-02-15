@@ -530,12 +530,62 @@ body {
     align-items: center;
   }
 
+  .logo-halal-group {
+    transform: translateX(0);
+    animation: none;
+  }
+
   .delivery-text {
     text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: mobile-text-appear 0.8s ease-out forwards;
+    animation-delay: 2s;
+  }
+
+  @keyframes mobile-text-appear {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .delivery-title {
     font-size: 60px;
+  }
+
+  .logo-image {
+    width: 250px;
+    height: 250px;
+    animation: mobile-logo-shrink 1.5s ease-out forwards, logo-glow-intro 2.5s ease-out forwards;
+    animation-delay: 0.5s, 0s;
+  }
+
+  @keyframes mobile-logo-shrink {
+    0% {
+      width: 250px;
+      height: 250px;
+    }
+    100% {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  .logo-index-container {
+    animation-delay: 2s;
+  }
+
+  .halal-logo {
+    animation-delay: 2.2s;
+  }
+
+  .top-bar {
+    animation-delay: 2.5s;
   }
 
   .center-phone {
@@ -556,16 +606,6 @@ body {
 
   .halal-logo .halal-text {
     font-size: 18px;
-  }
-
-  .logo-image {
-    width: 150px;
-    height: 150px;
-  }
-
-  .bull-logo::before {
-    width: 180px;
-    height: 180px;
   }
 
   .logo-index {
