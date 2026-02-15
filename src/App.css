@@ -16,6 +16,184 @@ body {
 .app {
   min-height: 100vh;
   background: #000;
+  position: relative;
+}
+
+/* Settings Buttons */
+.settings-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  animation: fade-in 0.6s ease-out forwards;
+  animation-delay: 2.5s;
+}
+
+.settings-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #da3030;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.settings-btn:hover {
+  background: #da3030;
+  transform: scale(1.1);
+}
+
+.settings-btn.winter-btn {
+  font-size: 20px;
+}
+
+.settings-btn.winter-btn.active {
+  background: #1569b2;
+  border-color: #1569b2;
+  box-shadow: 0 0 20px rgba(21, 105, 178, 0.5);
+}
+
+.settings-btn.lang-btn {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Snowflakes */
+.snowflakes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  overflow: hidden;
+}
+
+.snowflake {
+  position: absolute;
+  top: -20px;
+  color: #fff;
+  animation: snowfall linear infinite;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Winter Mode Styles */
+.winter-mode {
+  background: #000;
+}
+
+.winter-mode .top-bar {
+  border-color: #1569b2;
+}
+
+.winter-mode .menu-item {
+  border-color: #1569b2;
+}
+
+.winter-mode .nav button {
+  border-color: #1569b2;
+}
+
+.winter-mode .nav button:hover {
+  background: #1569b2;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.winter-mode .nav button.active {
+  background: #1569b2;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.winter-mode .footer {
+  border-color: #1569b2;
+}
+
+.winter-mode .settings-btn {
+  border-color: #1569b2;
+}
+
+.winter-mode .settings-btn:hover {
+  background: #1569b2;
+}
+
+.winter-mode .logo-image {
+  box-shadow: 0 0 40px 15px rgba(21, 105, 178, 0.5);
+  animation: logo-glow-intro-winter 1.2s ease-out forwards;
+}
+
+@keyframes logo-glow-intro-winter {
+  0% {
+    box-shadow: 0 0 150px 80px rgba(21, 105, 178, 1);
+  }
+  30% {
+    box-shadow: 0 0 100px 50px rgba(21, 105, 178, 0.85);
+  }
+  100% {
+    box-shadow: 0 0 40px 15px rgba(21, 105, 178, 0.5);
+  }
+}
+
+.winter-mode .center-phone {
+  color: #1569b2;
+}
+
+.winter-mode .price-tag {
+  color: #fff;
+  background: #1569b2;
+  box-shadow: 0 4px 15px rgba(21, 105, 178, 0.5);
+}
+
+.winter-mode .stars span {
+  color: #1569b2;
+}
+
+.winter-mode .header-stripe {
+  background: linear-gradient(90deg, #1569b2 0%, #1569b2 100%);
+}
+
+.winter-mode .delivery-title {
+  color: #1569b2;
+}
+
+.winter-mode .footer-slogan {
+  color: #1569b2;
+}
+
+.winter-mode .bull-circle {
+  background: linear-gradient(135deg, #1569b2 0%, #1569b2 100%);
+}
+
+.winter-mode .menu-item-name {
+  color: #1569b2;
 }
 
 /* Header Styles */
@@ -229,7 +407,7 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(218, 48, 48, 0.1), transparent);
   transition: left 0.5s ease;
 }
 
@@ -239,8 +417,17 @@ body {
 
 .menu-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(218, 48, 48, 0.3);
   border-color: #FFD700;
+}
+
+.winter-mode .menu-item::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+.winter-mode .menu-item:hover {
+  box-shadow: 0 10px 30px rgba(21, 105, 178, 0.3);
+  border-color: #fff;
 }
 
 .menu-item-header {
@@ -299,7 +486,7 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   padding: 20px 40px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .logo-halal-group {
@@ -369,6 +556,7 @@ body {
 
 .bull-logo {
   position: relative;
+  z-index: 10;
 }
 
 .logo-image {
@@ -379,6 +567,8 @@ body {
   object-position: center top;
   box-shadow: 0 0 40px 15px rgba(218, 48, 48, 0.5);
   animation: logo-glow-intro 1.2s ease-out forwards;
+  position: relative;
+  z-index: 10;
 }
 
 @keyframes logo-glow-intro {
@@ -397,9 +587,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 70px;
   opacity: 0;
   animation: fade-in 0.6s ease-out forwards;
   animation-delay: 1s;
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes fade-in {
@@ -415,7 +608,7 @@ body {
 
 .logo-index {
   width: 180px;
-  height: auto;
+  height: 60px;
   object-fit: contain;
 }
 
@@ -605,6 +798,7 @@ body {
 
   .logo-index-container {
     animation-delay: 1s;
+    height: 50px;
   }
 
   .halal-logo {
@@ -637,6 +831,7 @@ body {
 
   .logo-index {
     width: 120px;
+    height: 40px;
   }
 
   .food-point-logo {
