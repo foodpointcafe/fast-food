@@ -10,6 +10,9 @@ import donarMalsiImg from '../pints/Shawerma/DONARMALSI.jpg';
 import amadeyImg from '../pints/Burgers/AMADEY.jpg';
 import topImg from '../pints/Burgers/TOP.jpg';
 import soulfulImg from '../pints/Burgers/SOULFUL.jpg';
+import patricianImg from '../pints/Burgers/PATRICIAN.jpg';
+import signatureBurgerImg from '../pints/Burgers/SIGNATUREBURGER.jpg';
+import bigAlladinImg from '../pints/Burgers/BIGALLADIN.jpg';
 import signatureShawermaImg from '../pints/Shawerma/SIGNATURESHAWERMA.jpg';
 
 // Переводы
@@ -45,6 +48,7 @@ const menuDescriptions = {
       { name: 'SOULFUL', description: 'Brioche bun, white sauce, signature sauce, tomato, chicken egg, cheddar, iceberg' },
       { name: 'PATRICIAN', description: 'Sesame bun, signature beef, onion, tomato, egg, ham, iceberg lettuce, cheddar cheese' },
       { name: 'SIGNATURE', description: 'Brioche bun, signature BBQ beef, grill sauce, cheddar cheese, lettuce leaf' },
+        { name: 'BIG-ALADDIN', description: 'Wheat bun, red sauce, signature sauce, mozzarella, BBQ beef, vegetables' },
     ],
     shawarma: [
       { name: 'SIGNATURE', description: 'Cheese lavash, fries, BBQ beef, vegetables, signature and white sauce' },
@@ -59,8 +63,7 @@ const menuDescriptions = {
       { name: 'CHICKEN-SHOT', description: 'Tortilla, chicken, iceberg, tomato, cucumber, cheddar cheese, signature sauce' },
       { name: 'BEEF-SHOT', description: 'Tortilla, BBQ beef, iceberg, tomato, cucumber, cheddar cheese, signature sauce' },
       { name: 'ABU-DHABI', description: 'Wheat bun, breaded chicken, white sauce, lettuce leaf, cheddar cheese, vegetables' },
-      { name: 'BIG-ALADDIN', description: 'Wheat bun, red sauce, signature sauce, mozzarella, BBQ beef, vegetables' },
-      { name: 'SKIPASTI', description: 'Pita, tomato, cucumber, chicken, mozzarella, cheddar, white sauce, signature sauce' },
+        { name: 'SKIPASTI', description: 'Pita, tomato, cucumber, chicken, mozzarella, cheddar, white sauce, signature sauce' },
       { name: 'SIGNATURE SKIPASTI', description: 'Pita, tomato, cucumber, mozzarella, cheddar, signature beef' },
       { name: 'TASHE', description: 'Flatbread, chicken, fries, iceberg, tomato, cucumber, signature sauce, white sauce' },
       { name: 'SIGNATURE TASHE', description: 'Flatbread, signature beef, fries, tomato, cucumber, onion, white sauce, signature sauce' },
@@ -100,11 +103,23 @@ const menuData = {
       name: 'ПАТРИЦИАНСКИЙ',
       price: 450,
       description: 'Кунжутная булочка, фирменная говядина, лук, помидор, яйцо, ветчина, салат айзберг, сыр чеддер'
+      ,
+      image: patricianImg
     },
     {
       name: 'ФИРМЕННЫЙ',
       price: 350,
       description: 'Булочка бриошь, фирменная говядина барбекю, соус гриль, сыр чеддер, лист салата'
+      ,
+      image: signatureBurgerImg
+    }
+    ,
+    {
+      name: 'BIG-АЛЛАДИН',
+      price: 499,
+      description: 'Пшеничная булка, соус красный, соус фирменный, моцарела, говядина барбекью, овощи'
+      ,
+      image: bigAlladinImg
     }
   ],
   shawarma: [
@@ -163,11 +178,6 @@ const menuData = {
       name: 'АБУ-ДАБИ',
       price: 400,
       description: 'Булка пшеничная, курица в панировке, соус белый, лист салата, сыр чеддер, овощи'
-    },
-    {
-      name: 'BIG-АЛЛАДИН',
-      price: 499,
-      description: 'Пшеничная булка, соус красный, соус фирменный, моцарела, говядина барбекью, овощи'
     },
     {
       name: 'СКИПАСТИ',
