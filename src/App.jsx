@@ -1,9 +1,16 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import './App.css';
-import logoMain from '../pints/logoMain.jpeg';
-import logoIndex from '../pints/logoIndex.jpg';
-import logoMainWinter from '../pints/logoMainWinter.jpeg';
-import logoIndexWinter from '../pints/logoindexWinter.jpg';
+import logoMain from '../pints/Logo/logoMain.jpeg';
+import logoIndex from '../pints/Logo/logoIndex.jpg';
+import logoMainWinter from '../pints/Logo/logoMainWinter.jpeg';
+import logoIndexWinter from '../pints/Logo/logoindexWinter.jpg';
+import capitanAmericaImg from '../pints/Shawerma/capitanAmerica.jpg';
+import cheeseMountainsImg from '../pints/Shawerma/CHEESE MOUNTAINS.jpg';
+import donarMalsiImg from '../pints/Shawerma/DONARMALSI.jpg';
+import amadeyImg from '../pints/Burgers/AMADEY.jpg';
+import topImg from '../pints/Burgers/TOP.jpg';
+import soulfulImg from '../pints/Burgers/SOULFUL.jpg';
+import signatureShawermaImg from '../pints/Shawerma/SIGNATURESHAWERMA.jpg';
 
 // Переводы
 const translations = {
@@ -74,17 +81,20 @@ const menuData = {
     {
       name: 'АМАДЭЙ',
       price: 350,
-      description: 'Булочка бриошь, белый соус, красный соус, фирменный соус, халапеньо, помидор, курица в кляре, чеддер'
+      description: 'Булочка бриошь, белый соус, красный соус, фирменный соус, халапеньо, помидор, курица в кляре, чеддер',
+      image: amadeyImg
     },
     {
       name: 'ТОПОВЫЙ',
       price: 399,
-      description: 'Булочка бриошь, белый соус, фирменный соус, курица терияки, айзберг, сыр чеддер'
+      description: 'Булочка бриошь, белый соус, фирменный соус, курица терияки, айзберг, сыр чеддер',
+      image: topImg
     },
     {
       name: 'ДУШЕВНЫЙ',
       price: 400,
-      description: 'Булочка бриошь, белый соус, фирменный соус, помидор, курица яйцо, чеддер, айзберг'
+      description: 'Булочка бриошь, белый соус, фирменный соус, помидор, курица яйцо, чеддер, айзберг',
+      image: soulfulImg
     },
     {
       name: 'ПАТРИЦИАНСКИЙ',
@@ -101,7 +111,8 @@ const menuData = {
     {
       name: 'ФИРМЕННАЯ',
       price: 400,
-      description: 'Сырный лаваш, картошка фри, говядина барбекю, овощи, соус фирменный и белый'
+      description: 'Сырный лаваш, картошка фри, говядина барбекю, овощи, соус фирменный и белый',
+      image: signatureShawermaImg
     },
     {
       name: 'ОРИГИНАЛЬНАЯ',
@@ -116,17 +127,20 @@ const menuData = {
     {
       name: 'СЫРНЫЕ ГОРЫ',
       price: 499,
-      description: 'Сырный лаваш, курица, помидор, белый соус, фирменный соус, сыр моцарела, сыр адыгейский, сыр местный'
+      description: 'Сырный лаваш, курица, помидор, белый соус, фирменный соус, сыр моцарела, сыр адыгейский, сыр местный',
+      image: cheeseMountainsImg
     },
     {
       name: 'ДОНАР МАЛСИ',
       price: 499,
-      description: 'Лаваш круглый, курица, овощи, фирменный белый соус малси'
+      description: 'Лаваш круглый, курица, овощи, фирменный белый соус малси',
+      image: donarMalsiImg
     },
     {
       name: 'КАПИТАН АМЕРИКА',
       price: 450,
-      description: 'Лаваш, помидор, курица, картошка фри, соус фирменный, соус белый'
+      description: 'Лаваш, помидор, курица, картошка фри, соус фирменный, соус белый',
+      image: capitanAmericaImg
     },
     {
       name: 'ДОНАР ГОВЯДИНА',
@@ -209,8 +223,38 @@ function App() {
   const [activeCategory, setActiveCategory] = useState('burgers');
   const [isWinterMode, setIsWinterMode] = useState(false);
   const [language, setLanguage] = useState('ru');
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const t = translations[language];
+
+  // Убрать флаг начальной загрузки после первого рендера
+  useEffect(() => {
+    const timer = setTimeout(() => setIsInitialLoad(false), 4500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Отслеживание прокрутки для кнопки "вверх"
+  useEffect(() => {
+    const handleScroll = () => {
+      const navElement = document.querySelector('.nav');
+      if (navElement) {
+        const navRect = navElement.getBoundingClientRect();
+        // Показывать кнопку когда навигация полностью скрылась сверху
+        setShowScrollTop(navRect.bottom < 0);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Плавная прокрутка к навигации
+  const scrollToTop = () => {
+    const navElement = document.querySelector('.nav');
+    if (navElement) {
+      navElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   // Выбор логотипов в зависимости от режима
   const currentLogoMain = isWinterMode ? logoMainWinter : logoMain;
@@ -351,21 +395,56 @@ function App() {
       </nav>
 
       {/* Menu Grid */}
-      <main className="menu-grid">
-        {getMenuItems(activeCategory).map((item, index) => (
-          <div key={index} className="menu-item">
-            <div className="menu-item-header">
-              <h3 className="menu-item-name">{item.name}</h3>
-              <div className="price-tag">{item.price}₽</div>
+      <main className={`menu-grid ${isInitialLoad ? 'initial-load' : ''}`} key={activeCategory}>
+        {getMenuItems(activeCategory).map((item, index) => {
+          return (
+            <div 
+              key={index} 
+              className="menu-item"
+            >
+              <div className="menu-item-content">
+                <div className="menu-item-header">
+                  <h3 className="menu-item-name">{item.name}</h3>
+                  <div className="price-tag">{item.price}₽</div>
+                </div>
+                <p className="menu-item-description">{item.description}</p>
+              </div>
+              
+              <div className="menu-item-details show">
+                <div className="menu-item-photo-wrapper">
+                  <div className="menu-item-photo">
+                    {item.image ? (
+                      <img src={item.image} alt={item.name} />
+                    ) : (
+                      <div className="photo-placeholder">
+                        <span className="placeholder-icon">🍔</span>
+                        <span className="placeholder-text">
+                          {language === 'ru' ? 'Фото скоро' : 'Photo coming'}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="menu-item-description">{item.description}</p>
-          </div>
-        ))}
+          );
+        })}
       </main>
 
       {/* Footer */}
       <footer className="footer">
       </footer>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button 
+          className="scroll-to-top"
+          onClick={scrollToTop}
+          aria-label={language === 'ru' ? 'Вернуться к меню' : 'Back to menu'}
+        >
+          ↑
+        </button>
+      )}
     </div>
   );
 }
