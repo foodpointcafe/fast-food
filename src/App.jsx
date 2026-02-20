@@ -19,7 +19,16 @@ import bigAlladinImg from '../pints/Burgers/BIGALLADIN.jpg';
 import signatureShawermaImg from '../pints/Shawerma/SIGNATURESHAWERMA.jpg';
 import trioImg from '../pints/Combo/TRIO.jpg';
 import eliteImg from '../pints/Combo/ELITE.jpg';
-import threeDonarImg from '../pints/Combo/THREEDONAR.png';
+import threeTasheImg from '../pints/Combo/THREETASHE.png';
+import superComboImg from '../pints/Combo/SUPERCOMBO.png';
+import setOnCrowdImg from '../pints/Combo/SETONCROWD.jpg';
+import chikenShotImg from '../pints/Wrappers/CHIKENSHOT.jpg';
+import beefShotImg from '../pints/Wrappers/BEEFSHOT.jpg';
+import abuDabiImg from '../pints/Wrappers/ABUDABI.jpg';
+import skipastiImg from '../pints/Wrappers/SKIPASTI.jpg';
+import signatureSkipastiImg from '../pints/Wrappers/SIGNATURESKIPASTI.jpg';
+import tasheImg from '../pints/Wrappers/TASHE.jpg';
+import signatureTasheImg from '../pints/Wrappers/SIGNATURETASHE.jpg';
 
 // Переводы
 const translations = {
@@ -179,46 +188,52 @@ const menuData = {
     {
       name: 'ЧИКЕН-ШОТ',
       price: 399,
-      description: 'Тортилья, курица, айзберг, помидор, огурец, сыр чеддер, фирменный соус'
+      description: 'Тортилья, курица, айзберг, помидор, огурец, сыр чеддер, фирменный соус',
+      image: chikenShotImg
     },
     {
       name: 'БИФ-ШОТ',
       price: 399,
-      description: 'Тортилья, говядина-барбекью, айзберг, помидор, огурец, сыр чеддер, фирменный соус'
+      description: 'Тортилья, говядина-барбекью, айзберг, помидор, огурец, сыр чеддер, фирменный соус',
+      image: beefShotImg
     },
     {
       name: 'АБУ-ДАБИ',
       price: 400,
-      description: 'Булка пшеничная, курица в панировке, соус белый, лист салата, сыр чеддер, овощи'
+      description: 'Булка пшеничная, курица в панировке, соус белый, лист салата, сыр чеддер, овощи',
+      image: abuDabiImg
     },
     {
       name: 'СКИПАСТИ',
       price: 350,
-      description: 'Пита, помидор, огурец, курица, моцарелла, чеддер, белый соус, фирменный соус'
+      description: 'Пита, помидор, огурец, курица, моцарелла, чеддер, белый соус, фирменный соус',
+      image: skipastiImg
     },
     {
       name: 'СКИПАСТИ ФИРМЕННЫЙ',
       price: 450,
-      description: 'Пита, помидор, огурец, моцарелла, чеддер, фирменная говядина'
+      description: 'Пита, помидор, огурец, моцарелла, чеддер, фирменная говядина',
+      image: signatureSkipastiImg
     },
     {
       name: 'ТАШЕ',
       price: 350,
-      description: 'Лепешка, курица, картошка фри, айзберг, помидор, огурец, фирменный соус, белый соус'
+      description: 'Лепешка, курица, картошка фри, айзберг, помидор, огурец, фирменный соус, белый соус',
+      image: tasheImg
     },
     {
       name: 'ФИРМЕННЫЙ ТАШЕ',
       price: 399,
-      description: 'Лепешка, фирменная говядина, картошка фри, помидор, огурец, лук, белый соус, фирменный соус'
+      description: 'Лепешка, фирменная говядина, картошка фри, помидор, огурец, лук, белый соус, фирменный соус',
+      image: signatureTasheImg
     }
   ],
   sets: [
     {
       name: 'ТРИО',
       price: 1450,
-      description: 'Три любые шаурмы, 3 фри'
-      ,
-      image: threeDonarImg
+      description: 'Три любые шаурмы, 3 фри',
+      image: trioImg
     },
     {
       name: 'ЭЛИТА',
@@ -230,17 +245,21 @@ const menuData = {
     {
       name: 'ТРИ ТАШЕ',
       price: 1450,
-      description: 'Три таше, 3 фри, 3 сырных соуса'
+      description: 'Три таше, 3 фри, 3 сырных соуса',
+      image: threeTasheImg
     },
     {
       name: 'СЕТ НА ТОЛПУ',
       price: 3300,
-      description: '4 скипасти, 4 топовых, 4 картошки фри'
+      description: '4 скипасти, 4 топовых, 4 картошки фри',
+      image: setOnCrowdImg
     },
     {
       name: 'СУПЕР-КОМБО',
       price: 650,
-      description: 'Кола, картошка фри + любая шаурма, гиро или бургер'
+      description: 'Кола, картошка фри + любая шаурма, гиро или бургер',
+      image: superComboImg,
+      isAnimated: true
     }
   ]
 };
@@ -251,8 +270,18 @@ function App() {
   const [language, setLanguage] = useState('ru');
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [rotatingIndex, setRotatingIndex] = useState(0);
 
   const t = translations[language];
+
+  // Собрать все позиции из всех категорий кроме sets (для супер-комбо анимации)
+  const allMenuItems = useMemo(() => {
+    return [
+      ...menuData.burgers,
+      ...menuData.shawarma,
+      ...menuData.wraps
+    ].filter(item => item.image); // только с фото
+  }, []);
 
   // Убрать флаг начальной загрузки после первого рендера
   useEffect(() => {
@@ -273,6 +302,17 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Вращение позиций для супер-комбо (каждые 1.2 сек)
+  useEffect(() => {
+    if (allMenuItems.length === 0) return;
+    
+    const interval = setInterval(() => {
+      setRotatingIndex((prev) => (prev + 1) % allMenuItems.length);
+    }, 1200);
+    
+    return () => clearInterval(interval);
+  }, [allMenuItems.length]);
 
   // Плавная прокрутка к навигации
   const scrollToTop = () => {
@@ -423,6 +463,42 @@ function App() {
       {/* Menu Grid */}
       <main className={`menu-grid ${isInitialLoad ? 'initial-load' : ''}`} key={activeCategory}>
         {getMenuItems(activeCategory).map((item, index) => {
+          // Особая логика для супер-комбо с анимацией
+          if (item.isAnimated && allMenuItems.length > 0) {
+            const rotatingItem = allMenuItems[rotatingIndex];
+            
+            return (
+              <div 
+                key={index} 
+                className="menu-item super-combo-item"
+              >
+                <div className="menu-item-content">
+                  <div className="menu-item-header">
+                    <h3 className="menu-item-name">{item.name}</h3>
+                    <div className="price-tag">{item.price}₽</div>
+                  </div>
+                  <p className="menu-item-description">{item.description}</p>
+                </div>
+                
+                <div className="menu-item-details show">
+                  <div className="super-combo-photos">
+                    <div className="super-combo-left">
+                      <img src={item.image} alt={item.name} />
+                    </div>
+                    <div className="super-combo-right">
+                      <img 
+                        src={rotatingItem.image} 
+                        alt={rotatingItem.name}
+                        key={rotatingIndex}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+          
+          // Обычный рендеринг для остальных позиций
           return (
             <div 
               key={index} 
